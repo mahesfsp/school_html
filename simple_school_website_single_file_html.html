@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bright Future School</title>
+  <meta name="description" content="Bright Future School — nurturing curious minds and confident leaders. Owned & managed by Ashwini.">
+  <style>
+    /* ======= Design Tokens (Bright Blue & White) ======= */
+    :root{
+      --bg:#ffffff;           /* page background */
+      --bg-soft:#f5f8ff;      /* soft section */
+      --surface:#ffffff;      /* cards */
+      --border:rgba(0, 40, 120, 0.12);
+      --text:#0b1220;         /* deep navy text */
+      --muted:#51607a;        /* cool gray */
+      --brand:#0057ff;        /* primary blue */
+      --brand-2:#4da3ff;      /* light blue accent */
+      --accent:#0ea5e9;       /* cyan accent */
+      --success:#16a34a;      
+      --danger:#ef4444;
+      --radius:16px;
+      --shadow:0 14px 40px rgba(19, 41, 95, 0.10);
+      --glow:0 0 0 1px rgba(0, 87, 255, 0.08), inset 0 1px 0 rgba(255,255,255,.6);
+    }
+
+    /* ======= Global ======= */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:500 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    img{max-width:100%;display:block}
+    a{color:var(--brand);text-decoration:none}
+    .container{max-width:1180px;margin:0 auto;padding:0 20px}
+
+    /* ======= Header / Nav ======= */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:12px;align-items:center;color:var(--text)}
+    .logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 6px 18px rgba(0,87,255,.35)}
+    .brand b{letter-spacing:.3px;font-weight:800}
+    .menu{display:flex;gap:8px}
+    .menu a{padding:8px 12px;border-radius:10px;color:var(--text);opacity:.9}
+    .menu a:hover{background:#edf2ff;opacity:1}
+    .menu-btn{display:none;border:1px solid var(--border);background:transparent;color:var(--text);padding:8px 12px;border-radius:10px}
+
+    /* ======= Hero ======= */
+    .hero{padding:84px 0 50px;background:
+      radial-gradient(1100px 500px at 75% -10%,rgba(0,87,255,.12),transparent),
+      radial-gradient(900px 480px at 10% -20%,rgba(77,163,255,.14),transparent)}
+    .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+    h1{font-size:clamp(30px,4.2vw,52px);line-height:1.12;margin:0 0 12px}
+    .lead{color:var(--muted);font-size:clamp(16px,2.2vw,18px)}
+    .cta{display:flex;gap:12px;margin-top:20px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid var(--border);color:#08306b;background:linear-gradient(180deg,#ffffff,#f7fbff);box-shadow:var(--glow)}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#ffffff;border:none;box-shadow:0 12px 30px rgba(0,87,255,.28)}
+    .btn.ghost:hover{background:#f0f6ff}
+
+    /* ======= Sections / Cards ======= */
+    section{padding:56px 0}
+    section h2{font-size:clamp(22px,2.6vw,30px);margin:0 0 12px;color:#092c6e}
+    section p.section-lead{margin:0 0 22px;color:var(--muted)}
+
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
+    .stat{padding:18px;text-align:center;background:#ffffff;border:1px solid var(--border);border-radius:14px}
+    .stat b{display:block;font-size:28px;color:#093a98}
+    .stat span{color:var(--muted);font-size:14px}
+
+    /* Programs */
+    .programs{background:var(--bg-soft)}
+    .programs .item{padding:20px}
+    .programs .item h3{margin:0 0 8px;font-size:18px;color:#0b3aa3}
+
+    /* Admissions */
+    .admissions{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .steps{padding:20px}
+    .steps ol{margin:0 0 0 18px}
+    .steps li{margin:8px 0}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .gallery div{aspect-ratio:4/3;border-radius:14px;background:linear-gradient(120deg,#e9f2ff,#f7fbff);border:1px solid var(--border)}
+
+    /* Faculty */
+    .faculty .teacher{display:flex;gap:14px;align-items:center;padding:16px}
+    .avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(180deg,var(--brand),var(--brand-2))}
+
+    /* Contact */
+    .contact .card{padding:20px}
+    form label{display:block;margin:10px 0 6px}
+    input,textarea,select{width:100%;padding:12px 12px;border-radius:10px;border:1px solid var(--border);background:#f7fbff;color:var(--text)}
+    textarea{min-height:120px;resize:vertical}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    /* Footer */
+    footer{padding:28px 0;border-top:1px solid var(--border);color:var(--muted);background:#fafcff}
+
+    /* ======= Responsive ======= */
+    @media (max-width:900px){
+      .hero .wrap{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .admissions{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .form-row{grid-template-columns:1fr}
+      .menu{display:none}
+      .menu-btn{display:inline-block}
+      .mobile-menu{display:none;flex-direction:column;gap:10px;padding:10px 0}
+      .mobile-menu a{padding:10px;border-radius:10px;background:#edf2ff}
+    }
+  </style>
+</head>
+<body>
+  <!-- ======= Header ======= -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Bright Future School">
+        <div class="logo" aria-hidden="true"></div>
+        <b>Bright Future School</b>
+      </a>
+      <nav aria-label="Primary" class="menu">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#admissions">Admissions</a>
+        <a href="#faculty">Faculty</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="menu-btn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+    </div>
+    <div class="container mobile-menu" id="mobileMenu" role="dialog" aria-modal="false" aria-labelledby="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#admissions">Admissions</a>
+      <a href="#faculty">Faculty</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- ======= Hero ======= -->
+  <main id="home">
+    <section class="hero">
+      <div class="container wrap">
+        <div>
+          <h1>Bright, modern, and professional — in blue & white.</h1>
+          <p class="lead">Owned & managed by <b>Ashwini</b>. Located in <b>Bengaluru (Bangalore), India</b>. Explore our programs, tour the campus, and apply online.</p>
+          <div class="cta">
+            <a class="btn primary" href="#admissions">Apply Now</a>
+            <a class="btn ghost" href="#contact">Book a Tour</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>1,200+</b><span>Students</span></div>
+            <div class="stat"><b>60+</b><span>Teachers</span></div>
+            <div class="stat"><b>15:1</b><span>Student–Teacher</span></div>
+            <div class="stat"><b>100%</b><span>STEM Labs</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="padding:16px;aspect-ratio:16/10;display:grid;place-items:center">
+            <div>
+              <h3 style="margin:0 0 8px;color:#0b3aa3">Welcome to Bright Future</h3>
+              <p style="color:var(--muted);margin:0">Replace this with your campus photo or a hero image.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= About ======= -->
+    <section id="about">
+      <div class="container">
+        <h2>About Our School</h2>
+        <p class="section-lead">Balanced curriculum, strong character, and a commitment to excellence.</p>
+        <div class="grid-3">
+          <div class="card" style="padding:20px">
+            <h3>Mission</h3>
+            <p>To develop compassionate, resilient, and globally minded learners.</p>
+          </div>
+          <div class="card" style="padding:20px">
+            <h3>Vision</h3>
+            <p>A vibrant community where every student thrives in academics and character.</p>
+          </div>
+          <div class="card" style="padding:20px">
+            <h3>Values</h3>
+            <p>Respect • Integrity • Curiosity • Excellence • Service</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Programs ======= -->
+    <section id="programs" class="programs">
+      <div class="container">
+        <h2>Programs</h2>
+        <p class="section-lead">Designed to challenge, support, and inspire at every stage.</p>
+        <div class="grid-3">
+          <div class="card item">
+            <h3>Early Years</h3>
+            <p>Play-based learning, language development, and social skills in a caring setting.</p>
+          </div>
+          <div class="card item">
+            <h3>Primary</h3>
+            <p>Foundations in literacy, numeracy, science, and creative arts.</p>
+          </div>
+          <div class="card item">
+            <h3>Middle & High</h3>
+            <p>Advanced coursework, clubs, sports, leadership, and university guidance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Admissions ======= -->
+    <section id="admissions">
+      <div class="container admissions">
+        <div class="card steps">
+          <h2>Admissions</h2>
+          <p class="section-lead">Apply online in minutes. Our team will guide you through each step.</p>
+          <ol>
+            <li>Submit application form</li>
+            <li>Provide documents (ID, transcripts, photos)</li>
+            <li>Entrance assessment (grade-appropriate)</li>
+            <li>Parent meeting & campus tour</li>
+            <li>Offer & enrollment</li>
+          </ol>
+          <p style="margin-top:12px">Questions? <a href="#contact">Contact our office</a>.</p>
+        </div>
+        <div class="card" style="padding:20px">
+          <h3>Key Dates (2025–26)</h3>
+          <ul>
+            <li>Applications open: 1 Nov 2025</li>
+            <li>Assessments: Dec 2025 – Feb 2026</li>
+            <li>Offers released: From Feb 2026</li>
+          </ul>
+          <h3>Fee Snapshot</h3>
+          <ul>
+            <li>Application Fee: (update)</li>
+            <li>Annual Tuition: (update)</li>
+            <li>Transport (optional): (update)</li>
+          </ul>
+          <small style="color:var(--muted)">*Replace with your actual dates & fees.</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Gallery ======= -->
+    <section>
+      <div class="container">
+        <h2>Campus Highlights</h2>
+        <div class="gallery">
+          <div title="STEM Lab"></div>
+          <div title="Library"></div>
+          <div title="Playground"></div>
+          <div title="Auditorium"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Faculty ======= -->
+    <section id="faculty" class="faculty">
+      <div class="container">
+        <h2>Our Faculty</h2>
+        <div class="card teacher">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <b>Ms. Aisha Rahman</b><br/>
+            <small style="color:var(--muted)">Principal • 18 yrs experience</small>
+          </div>
+        </div>
+        <div class="card teacher">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <b>Mr. Daniel Joseph</b><br/>
+            <small style="color:var(--muted)">Head of Science • Robotics Coach</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Contact ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <div class="grid-3">
+          <div class="card" style="padding:20px">
+            <h3>School Office</h3>
+            <p>
+              Bright Future School<br>
+              Bengaluru (Bangalore), Karnataka, India<br>
+              Phone: +91 80 0000 0000<br>
+              Email: admissions@brightfuture.edu
+            </p>
+            <p><small style="color:var(--muted)">Replace with your real details.</small></p>
+          </div>
+          <div class="card" style="grid-column:span 2;padding:20px">
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div>
+                  <label for="name">Your Name</label>
+                  <input id="name" name="name" placeholder="Full name" required>
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label for="grade">Prospective Grade</label>
+                  <select id="grade" name="grade">
+                    <option>KG</option>
+                    <option>Grade 1</option>
+                    <option>Grade 2</option>
+                    <option>Grade 3</option>
+                    <option>Grade 4</option>
+                    <option>Grade 5+</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="phone">Phone (optional)</label>
+                  <input id="phone" name="phone" placeholder="+91 .." />
+                </div>
+              </div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us how we can help"></textarea>
+              <div class="cta" style="margin-top:14px">
+                <button class="btn primary" type="submit">Send Enquiry</button>
+                <span id="formNote" style="align-self:center;color:var(--muted)"></span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Bright Future School — Owned by Ashwini • Bengaluru (Bangalore), India</div>
+      <div>
+        <a href="#admissions">Admissions</a> ·
+        <a href="#contact">Contact</a> ·
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======= Scripts ======= -->
+  <script>
+    // Mobile menu toggle
+    const btn = document.querySelector('.menu-btn');
+    const menu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => {
+      const open = menu.style.display === 'flex';
+      menu.style.display = open ? 'none' : 'flex';
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Basic contact form handler (demo only)
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      if(!data.name || !data.email){
+        note.textContent = 'Please fill name and email.';
+        note.style.color = 'var(--danger)';
+        return;
+      }
+      note.textContent = 'Thanks! We\'ll get back to you soon.';
+      note.style.color = 'var(--success)';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
